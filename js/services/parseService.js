@@ -1,7 +1,6 @@
 'use strict';
 
 /* Services */
-
 App.factory('ParseService', function(){
     // Initialize Parse API and objects.
     Parse.initialize("63ICi1wvureE0W4gOv3RxShCaAmXv6i34fyAjtJx", "vq3xcnkduj6hlDUhqiqEeN6pQdoBnwiKHH10BJf5");

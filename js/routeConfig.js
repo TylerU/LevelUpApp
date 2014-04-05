@@ -4,7 +4,7 @@ App.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/home', {
-        templateUrl: 'routes/homepage.html',
+        templateUrl: 'routes/home.html',
         controller: ''
       }).
       when('/login', {
@@ -12,7 +12,7 @@ App.config(['$routeProvider',
         controller: 'LoginCtrl'
       }).
       when('/todo', {
-        templateUrl: 'routes/mainTodo.html',
+        templateUrl: 'routes/main.html',
         controller: 'TodoCtrl'
       }).
       otherwise({

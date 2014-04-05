@@ -6,7 +6,7 @@ Todo:
 
 */
 
-var App = angular.module("levelup",[]);
+var App = angular.module("levelup",['ngRoute']);
 
 App.controller("LevelUpAppCtrl",function  ($scope) {
 	$scope.init = function  () {
@@ -38,6 +38,43 @@ App.controller("LevelUpAppCtrl",function  ($scope) {
                     text: "You leveled up your COOKING skill"
                 }
             ]
+        };
+
+        $scope.addSkill = function(){
+
+        };
+
+        $scope.addActivity = function(){
+
         }
 	};
+});
+
+App.controller("LoginCtrl", function($scope, ParseService){
+    $scope.loginUserName = "";
+    $scope.loginPassword = "";
+    $scope.signUpEmail = "";
+    $scope.signUpFirstName = "";
+    $scope.signUpLastName = "";
+    $scope.signUpPassword = "";
+    $scope.loginErrorMessage = "";
+    $scope.signUpErrorMessage = "";
+
+    $scope.login = function(){
+
+    };
+
+    $scope.fbLogin = function(){
+
+    };
+
+    $scope.signUp = function(){
+
+    };
+
+    $scope.fbSignUp = function(){
+
+    };
+//    $scope.$apply( $location.path( "/todo" ) );
+
 });
