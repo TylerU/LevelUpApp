@@ -17,6 +17,7 @@ App.factory('ParseService', function(){
 
     function activityFromParseObj(act, skill){
         var a = new Activity(act.get("description"), act.get("time"), act.get("difficulty"), skill, act.createdAt);
+        a.levelUp(act.get('leveledUp'));
         a._parseObj = act;
         return a;
     }
@@ -193,15 +194,21 @@ App.factory('ParseService', function(){
             activity.set("description", description);
             activity.set("difficulty", difficulty + 1);
             activity.set("time", time);
+            activity.set("leveledUp", false);
 
             activity.save(null, {
                 success: function(newActivity) {
 //                    .push(activityFromParseObject(newActivity));
                     var na = activityFromParseObj(newActivity, skill);
                     recentActivities.unshift(na);
+
                     skill._parseObj.set("totalxp", skill.getTotalXp() + na.getXpGained());
                     skill._parseObj.save(null, {
                         success: function (obj) {
+                            if(skill.getNextLevelXp() <= skill.getTotalXp() + na.getXpGained()){
+                                activity.set('leveledUp', true);
+                                activity.save(null,{});
+                            }
                             skill.setTotalXp(obj.get("totalxp"));
                             dfd.resolve(na);
                         },

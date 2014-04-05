@@ -35,11 +35,13 @@ body{
 
 .skill{
     margin-top: 10px;
+    height: 60px;
+    padding: 5px;
 }
 
 .skill-progress .skill-text{
     position: absolute;
-    width: 90%;
+    width: 75%;
     display: block;
     text-align: center;
 }
@@ -47,21 +49,60 @@ body{
 .skill-level{
     width: 15%;
     float: left;
+    text-align: left;
+    font-size: 35px;
+    line-height: 55px;
+    font-weight: bold;
 }
 
-.skill-progress{
+.skill-name-and-progress{
     float:left;
     width: 85%;
 }
 
-.skill-progress-container{
-    width: 100%;
-    position: relative;
-    height: 30px;
-    padding: 3px;
-}
+
+/*.skill-progress-container{*/
+    /*width: 100%;*/
+    /*position: relative;*/
+    /*height: 30px;*/
+    /*padding: 3px;*/
+/*}*/
 
 .skill-name{
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-size: 18px;
+}
+
+.activity-image img.leveled{
+    width: 80px;
+    height: 80px;
+}
+.activity-image img.no-leveled{
+    width: 70px;
+    height: 60px;
+}
+
+
+.activity-image{
+    height: 80px;
+    width: 10%;
+    float: left;
+}
+
+.activity-data{
+    width: 90%;
+    float: left;
+}
+
+.clearfix {
+    display: inline-block;
+    width: 100%;
+}
+
+.activity-name{
+    font-size: 18px;
+}
+.activity-gain{
+    font-size: 24px;
+    font-weight: bold;
 }

@@ -80,7 +80,9 @@ Activity.prototype.getDifficultyLevel = function(){
 Activity.prototype.levelUp = function(tf){
     this.leveledUp = tf;
 }
-
+Activity.prototype.increasedLevel = function(){
+    return this.leveledUp;
+}
 Activity.prototype.getDate = function(){
     return this.date;
 }

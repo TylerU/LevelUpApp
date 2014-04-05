@@ -11,14 +11,16 @@
             </div>
 
             <div class="skill" ng-repeat="skill in skills">
-                <div class="skill-name">{{skill.getName()}}</div>
-                <div class="skill-progress-container">
-                    <div class="skill-level">Lvl {{skill.getLevel()}}</div>
-                    <div class="progress progress-striped skill-progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{skill.getProgress()}}%">
-                            <span class="sr-only">{{skill.getProgress()}}% Complete (success)</span>
+                <div class="skill-level">{{skill.getLevel()}}</div>
+                <div class="skill-name-and-progress">
+                    <div class="skill-name">{{skill.getName()}}</div>
+                    <div class="skill-progress-container">
+                        <div class="progress progress-striped skill-progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{skill.getProgress()}}%">
+                                <span class="sr-only">{{skill.getProgress()}}% Complete (success)</span>
+                            </div>
+                            <span class="skill-text">{{skill.getTotalXp()}} / {{skill.getNextLevelXp()}}</span>
                         </div>
-                        <span class="skill-text">{{skill.getTotalXp()}} / {{skill.getNextLevelXp()}}</span>
                     </div>
                 </div>
             </div>
@@ -47,12 +49,25 @@
         </div>
         <div class="newsfeed">
             <!--<h3>Recent Activity</h3>-->
-            <div class="foreground-area" ng-repeat="story in activities">
-                <div>
-                    <div class="text-muted">{{story.getDate() | date:'short'}}</div>
-                    <h4>{{story.getSkillName()}} + {{story.getXpGained()}} XP.</h4>
+            <div class="foreground-area" ng-repeat="activity in activities">
+                <div class="activity-name">
+                    {{activity.getSkillName()}}
+                    <!--<span ng-show="activity.increasedLevel()"> LEVEL UP </span>-->
+                </div>
+                <div class="activity-data-container clearfix">
+                    <div class="activity-image">
+                        <img class="no-leveled" src="images/retro_coin.png" alt="" ng-show="!activity.increasedLevel()"/>
+                        <img class="leveled" src="images/levelup_one.jpg" alt="" ng-show="activity.increasedLevel()"/>
+                    </div>
+                    <div class="activity-data">
+                        <div class="activity-gain">
+                            + {{activity.getXpGained()}} XP
+                        </div>
+                        <div class="activity-description">
+                            {{activity.getDescription()}}
+                        </div>
+                    </div>
 
-                    <span>{{story.getDescription()}}</span>
                 </div>
             </div>
         </div>
