@@ -12,10 +12,12 @@ App.controller("LevelUpAppCtrl",function  ($scope) {
 	$scope.init = function  () {
         $scope.difficultyOptions = [
             "Easy",
-            "Medium Difficulty",
-            "Very hard, but I've done it before",
-            "Very hard and completely new"
-        ]
+            "Medium",
+            "Hard",
+            "Very difficult, but I've done it before",
+            "Very difficult, but it's completely new"
+        ];
+
         $scope.model = {
             userSkills: [
                 {name: "Cooking",
