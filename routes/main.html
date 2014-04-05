@@ -11,7 +11,7 @@
             </div>
 
             <div class="skill" ng-repeat="skill in skills">
-                <div class="skill-level">{{skill.getLevel()}}</div>
+                <div class="skill-level">{{skill.getLevel() + 1}}</div>
                 <div class="skill-name-and-progress">
                     <div class="skill-name">{{skill.getName()}}</div>
                     <div class="skill-progress-container">
