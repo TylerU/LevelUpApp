@@ -19,7 +19,7 @@ User should be able to:
 
 var App = angular.module("levelup",['ngRoute', 'ui.keypress']);
 
-App.controller("LevelUpAppCtrl",function  ($scope, ParseService, $location) {
+App.controller("LevelUpAppCtrl",function  ($scope, ParseService, $location, $rootScope) {
     $scope.difficultyOptions = [
         "Easy",
         "Medium",
@@ -54,23 +54,30 @@ App.controller("LevelUpAppCtrl",function  ($scope, ParseService, $location) {
     $scope.getUsersName = function(){
         return ParseService.getUsersName();
     };
+});
 
+App.controller("LevelUpMainCtrl",function  ($scope, ParseService, $location, $rootScope) {
     $scope.skills = [];
     $scope.activities = [];
 
+    $scope.setActivities = function(a){
+        $rootScope.$apply($scope.activities = a);
+    };
+
+    $scope.setSkills = function(s){
+        $rootScope.$apply($scope.skills = s);
+    };
+
     $scope.init = function  () {
         //Get skills
-        setTimeout(function(){
+        setTimeout(function(){//Set time out so that our apply calls happen not inside here
             ParseService.getSkills().done(function(model){
-                $scope.$apply(function(){
-                    $scope.skills = model.skills;
-                    $scope.activities = model.activities;
-                });
+                $scope.setSkills(model.skills);
+                $scope.setActivities(model.activities);
             }).fail(function(err){
                 console.log(err);
             });
         }, 0);
-
     };
 
 });

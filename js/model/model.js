@@ -10,7 +10,8 @@ Skill.prototype.getName = function(){
 };
 
 Skill.prototype.getLevel = function(){
-    return Math.floor((1/3)*(-50 + Math.sqrt(3*this.totalxp + 2500)));
+//    return Math.floor((1/3)*(-50 + Math.sqrt(3*this.totalxp + 2500)));
+    return Math.floor((1/4)*(-15 + Math.sqrt(4*this.totalxp + 225)));
 };
 
 Skill.prototype.getProgress = function(){
@@ -34,8 +35,10 @@ Skill.prototype.getLastLevelXp = function(){
 };
 
 Skill.prototype.getXpFromLevel = function(level){
-    return 3*level*level + 100*level;
+    return 4*level*level + 30*level;
+//    return 3*level*level + 100*level;
 };
+
 
 
 

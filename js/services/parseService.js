@@ -127,6 +127,9 @@ App.factory('ParseService', function(){
             var dfd = new jQuery.Deferred();
             dfd.resolve();
             Parse.User.logOut();
+            skills = null;
+            skillsTemp = {};
+            recentActivities = null;
             return dfd.promise();
         },
 
@@ -147,8 +150,8 @@ App.factory('ParseService', function(){
         getSkills: function(){
             var dfd = new jQuery.Deferred();
 
-            if(skills){
-                dfd.resolve(skills);
+            if(skills && recentActivities){
+                dfd.resolve({skills: skills, activities: recentActivities});
             }
             else{
                 getSkillsAndResolve(dfd);

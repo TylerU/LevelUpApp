@@ -32,3 +32,36 @@ body{
     top:0px;
     right:0px;
 }
+
+.skill{
+    margin-top: 10px;
+}
+
+.skill-progress .skill-text{
+    position: absolute;
+    width: 90%;
+    display: block;
+    text-align: center;
+}
+
+.skill-level{
+    width: 15%;
+    float: left;
+}
+
+.skill-progress{
+    float:left;
+    width: 85%;
+}
+
+.skill-progress-container{
+    width: 100%;
+    position: relative;
+    height: 30px;
+    padding: 3px;
+}
+
+.skill-name{
+    font-weight: bold;
+    font-size: 18px;
+}

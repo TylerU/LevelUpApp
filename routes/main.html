@@ -1,5 +1,5 @@
-<div class="row main-app">
-    <div class="skills-side-bar col-md-4 " ng-controller="SkillsCtrl" ng-init="init()">
+ <div class="row main-app" ng-controller="LevelUpMainCtrl" ng-init="init()">
+    <div class="skills-side-bar col-md-4 " ng-controller="SkillsCtrl">
         <div class="foreground-area">
             <h3>Your Skills</h3>
             <div class="new-skill form-inline">
@@ -10,49 +10,50 @@
                 </div>
             </div>
 
-            <div ng-repeat="skill in skills">
-                {{skill.getLevel()}}  {{skill.getName()}}
-                <div class="progress progress-striped">
-
-                    <!--aria-valuenow="{{skill.totalxp}} aria-valuemin="{{skill.lastLevel}}" aria-valuemax="{{skill.nextLevel}}"-->
-                    <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{skill.getProgress()}}%">
-                    <span class="sr-only">{{skill.getProgress()}}% Complete (success)</span>
-                    {{skill.getTotalXp()}} / {{skill.getNextLevelXp()}}
+            <div class="skill" ng-repeat="skill in skills">
+                <div class="skill-name">{{skill.getName()}}</div>
+                <div class="skill-progress-container">
+                    <div class="skill-level">Lvl {{skill.getLevel()}}</div>
+                    <div class="progress progress-striped skill-progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{skill.getProgress()}}%">
+                            <span class="sr-only">{{skill.getProgress()}}% Complete (success)</span>
+                        </div>
+                        <span class="skill-text">{{skill.getTotalXp()}} / {{skill.getNextLevelXp()}}</span>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
-<div class="col-md-8" >
-    <div class="input-form foreground-area" ng-controller="ActivityCtrl">
-        <h3>Activity Entry</h3>
-        <div class="form-group">
-            <label for="activitySkill">Skill: </label>
-            <select class="form-control" id="activitySkill" ng-model="activitySkill" ng-options="c.getName() for c in skills"></select>
+    <div class="col-md-8" >
+        <div class="input-form foreground-area" ng-controller="ActivityCtrl">
+            <h3>Activity Entry</h3>
+            <div class="form-group">
+                <label for="activitySkill">Skill: </label>
+                <select class="form-control" id="activitySkill" ng-model="activitySkill" ng-options="c.getName() for c in skills"></select>
+            </div>
+            <div class="form-group">
+                <label for="activityDescription">What did you do?</label>
+                <textarea class="form-control" id="activityDescription" ng-model="activityDescription"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="activityTime">How long did it take (in hours)?</label>
+                <input class="form-control" id="activityTime" ng-model="activityTime">
+            </div>
+            <div class="form-group">
+                <label for="activityDifficulty">How difficult was it?</label>
+                <select class="form-control" id="activityDifficulty" ng-model="activityDifficulty" ng-options="c for c in difficultyOptions"></select>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" ng-click="addActivity()">Log Activity!</button>
         </div>
-        <div class="form-group">
-            <label for="activityDescription">What did you do?</label>
-            <textarea class="form-control" id="activityDescription" ng-model="activityDescription"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="activityTime">How long did it take (in hours)?</label>
-            <input class="form-control" id="activityTime" ng-model="activityTime">
-        </div>
-        <div class="form-group">
-            <label for="activityDifficulty">How difficult was it?</label>
-            <select class="form-control" id="activityDifficulty" ng-model="activityDifficulty" ng-options="c for c in difficultyOptions"></select>
-        </div>
-        <button type="button" class="btn btn-primary btn-sm" ng-click="addActivity()">Log Activity!</button>
-    </div>
-    <div class="newsfeed">
-        <!--<h3>Recent Activity</h3>-->
-        <div class="foreground-area" ng-repeat="story in activities">
-            <div>
-                {{story.getDate()}}
-                <h4>{{story.getSkillName()}}</h4>
-                <h1>+ {{story.getXpGained()}} XP.</h1>
-                <span>{{story.getDescription()}}</span>
+        <div class="newsfeed">
+            <!--<h3>Recent Activity</h3>-->
+            <div class="foreground-area" ng-repeat="story in activities">
+                <div>
+                    <div class="text-muted">{{story.getDate() | date:'short'}}</div>
+                    <h4>{{story.getSkillName()}} + {{story.getXpGained()}} XP.</h4>
+
+                    <span>{{story.getDescription()}}</span>
+                </div>
             </div>
         </div>
     </div>

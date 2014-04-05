@@ -13,7 +13,7 @@ App.config(['$routeProvider',
       }).
       when('/main', {
         templateUrl: 'routes/main.html',
-        controller: 'LevelUpAppCtrl'
+        controller: ''
       }).
       otherwise({
         redirectTo: '/home'
