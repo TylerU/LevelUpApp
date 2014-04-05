@@ -2,76 +2,118 @@
 
 /*
 Todo:
+User should be able to:
+- Remove skills
+- Edit skills
+- Remove activity posts
+- Edit activity posts
 
+-Add friends
+-View friends' stuff
+
+-Load activity stuff
+
+-Validate all inputs
 
 */
 
 var App = angular.module("levelup",['ngRoute', 'ui.keypress']);
 
 App.controller("LevelUpAppCtrl",function  ($scope, ParseService, $location) {
-	$scope.init = function  () {
-        $scope.difficultyOptions = [
-            "Easy",
-            "Medium",
-            "Hard",
-            "Very difficult, but I've done it before",
-            "Very difficult, but it's completely new"
-        ];
+    $scope.difficultyOptions = [
+        "Easy",
+        "Medium",
+        "Hard",
+        "Very difficult, but I've done it before",
+        "Very difficult and it was completely new"
+    ];
 
-        $scope.logout = function(){
-            ParseService.logout();
-            $location.path( "/home" );
-        };
+    $scope.logout = function(){
+        ParseService.logout();
+        $location.path( "/home" );
+    };
 
-        $scope.logChange = function(){
-            if(ParseService.userLoggedIn()){
-                $scope.logout();
-            }
-            else{
-                $location.path("/login");
-            }
-        };
-
-        $scope.loginOrLogout = function(){
-            if(ParseService.userLoggedIn()){
-                return "Log out";
-            }
-            else{
-                return "Log in";
-            }
-        };
-
-        $scope.model = {
-            userSkills: [
-                {name: "Cooking",
-                    level: 12,
-                    totalxp: 12854,
-                    nextLevel: 15000,
-                    lastLevel: 12000
-                },
-                {name: "Programming",
-                    level: 42,
-                    totalxp: 144986,
-                    nextLevel: 150000,
-                    lastLevel: 110000
-                }
-            ],
-            newsFeed: [
-                {
-                    text: "You leveled up your COOKING skill"
-                }
-            ]
-        };
-
-        $scope.addSkill = function(){
-
-        };
-
-        $scope.addActivity = function(){
-
+    $scope.logChange = function(){
+        if(ParseService.userLoggedIn()){
+            $scope.logout();
         }
-	};
+        else{
+            $location.path("/login");
+        }
+    };
+
+    $scope.loginOrLogout = function(){
+        if(ParseService.userLoggedIn()){
+            return $scope.getUsersName() + ", Log out";
+        }
+        else{
+            return "Log in";
+        }
+    };
+
+    $scope.getUsersName = function(){
+        return ParseService.getUsersName();
+    };
+
+    $scope.skills = [];
+    $scope.activities = [];
+
+    $scope.init = function  () {
+        //Get skills
+        setTimeout(function(){
+            ParseService.getSkills().done(function(model){
+                $scope.$apply(function(){
+                    $scope.skills = model.skills;
+                    $scope.activities = model.activities;
+                });
+            }).fail(function(err){
+                console.log(err);
+            });
+        }, 0);
+
+    };
+
 });
+
+
+App.controller("SkillsCtrl", function($scope, $rootScope, ParseService){
+
+    $scope.newSkillName = "";
+    $scope.addSkill = function(){
+        ParseService.addSkill($scope.newSkillName).done(function(){
+            $scope.setActivities($scope.activities);
+        }).fail(function(err){
+            console.log(err);
+        });
+        $scope.newSkillName = "";
+    };
+});
+
+
+App.controller("ActivityCtrl", function($scope, ParseService, $rootScope){
+    $scope.activitySkill = "";
+    $scope.activityDescription = "";
+    $scope.activityDifficulty = "";
+    $scope.activityTime = "";
+
+    $scope.addActivity = function(){
+        var prevLevel = $scope.activitySkill.getLevel();
+        ParseService.addActivity($scope.activitySkill, $scope.activityDescription, $scope.difficultyOptions.indexOf($scope.activityDifficulty), parseFloat($scope.activityTime)).done(function(na){
+            if(prevLevel != na.getSkill().getLevel()){
+                na.levelUp(true);
+            }
+            $rootScope.$digest();
+        }).fail(function(err){
+            console.log(err);
+        });
+        $scope.activitySkill = "";
+        $scope.activityDescription = "";
+        $scope.activityDifficulty = "";
+        $scope.activityTime = "";
+    };
+});
+
+
 
 App.controller("LoginCtrl", function($scope, $location, ParseService){
     $scope.loginEmail = "";
@@ -108,6 +150,7 @@ App.controller("LoginCtrl", function($scope, $location, ParseService){
         }
         return null;
     }
+
     $scope.login = function(){
         $scope.loginErrorMessage = "";
         var errors = loginInfoErrors($scope.loginEmail, $scope.loginPassword);
@@ -127,7 +170,6 @@ App.controller("LoginCtrl", function($scope, $location, ParseService){
     };
 
 
-
     $scope.signUp = function(){
         $scope.signUpErrorMessage = "";
         var errors = signUpInfoErrors($scope.signUpEmail, $scope.signUpFirstName, $scope.signUpLastName, $scope.signUpPassword);
@@ -145,8 +187,4 @@ App.controller("LoginCtrl", function($scope, $location, ParseService){
             $scope.signUpErrorMessage = errors;
         }
     };
-
-
-//
-
 });
