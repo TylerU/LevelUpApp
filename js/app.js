@@ -47,7 +47,7 @@ App.controller("LevelUpAppCtrl",function  ($scope, ParseService, $location, $roo
             return $scope.getUsersName() + ", Log out";
         }
         else{
-            return "Log in";
+            return "Sign up / Log in";
         }
     };
 
