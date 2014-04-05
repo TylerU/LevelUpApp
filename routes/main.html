@@ -45,10 +45,15 @@
         </div>
         <button type="button" class="btn btn-primary btn-sm" ng-click="addActivity()">Log Activity!</button>
     </div>
-    <div class="newsfeed foreground-area">
-        <h3>Recent Activity</h3>
-        <div ng-repeat="story in activities">
-            {{story.getSkillName()}}   {{story.getDescription()}} {{story.leveledUp}}
+    <div class="newsfeed">
+        <!--<h3>Recent Activity</h3>-->
+        <div class="foreground-area" ng-repeat="story in activities">
+            <div>
+                {{story.getDate()}}
+                <h4>{{story.getSkillName()}}</h4>
+                <h1>+ {{story.getXpGained()}} XP.</h1>
+                <span>{{story.getDescription()}}</span>
+            </div>
         </div>
     </div>
 </div>

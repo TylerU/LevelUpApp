@@ -16,7 +16,7 @@ App.factory('ParseService', function(){
     }
 
     function activityFromParseObj(act, skill){
-        var a = new Activity(act.get("description"), act.get("time"), act.get("difficulty"), skill);
+        var a = new Activity(act.get("description"), act.get("time"), act.get("difficulty"), skill, act.createdAt);
         a._parseObj = act;
         return a;
     }

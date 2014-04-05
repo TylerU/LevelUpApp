@@ -39,12 +39,13 @@ Skill.prototype.getXpFromLevel = function(level){
 
 
 
-function Activity(description, time, difficulty, skill){
+function Activity(description, time, difficulty, skill, date){
     this.description = description;
     this.time = time;
     this.difficulty = difficulty;
     this.skill = skill;
     this.leveledUp = false;
+    this.date = date;
 }
 
 Activity.prototype.getDescription = function(){
@@ -75,4 +76,8 @@ Activity.prototype.getDifficultyLevel = function(){
 
 Activity.prototype.levelUp = function(tf){
     this.leveledUp = tf;
+}
+
+Activity.prototype.getDate = function(){
+    return this.date;
 }
