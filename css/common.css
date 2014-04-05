@@ -85,13 +85,12 @@ body{
 
 .activity-image{
     height: 80px;
-    width: 10%;
+    width: 80px;
     float: left;
 }
 
 .activity-data{
-    width: 90%;
-    float: left;
+    margin-left: 80px;
 }
 
 .clearfix {
