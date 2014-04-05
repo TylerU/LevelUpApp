@@ -15,7 +15,7 @@
 
                 <div style="margin-bottom: 25px" class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" ng-model="loginUserName">
+                    <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="email" ng-model="loginEmail">
                 </div>
 
                 <div style="margin-bottom: 25px" class="input-group">
@@ -39,7 +39,6 @@
 
                     <div class="col-sm-12 controls">
                         <a id="btn-login" ng-click="login()" class="btn btn-success">Login  </a>
-                        <a id="btn-fblogin" ng-click="fbLogin()" class="btn btn-primary">Login with Facebook</a>
                     </div>
                 </div>
 
@@ -65,7 +64,7 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <div class="panel-title">Sign Up</div>
-            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink"  onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
         </div>
         <div class="panel-body" >
             <form id="signupform" class="form-horizontal" role="form">
@@ -108,16 +107,7 @@
                     <!-- Button -->
                     <div class="col-md-offset-3 col-md-9">
                         <button id="btn-signup" type="button" class="btn btn-info" ng-click="signUp()"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-                        <span style="margin-left:8px;">or</span>
                     </div>
-                </div>
-
-                <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
-
-                    <div class="col-md-offset-3 col-md-9">
-                        <button id="btn-fbsignup" type="button" class="btn btn-primary" ng-click="fbSignUp()"><i class="icon-facebook"></i>   Sign Up with Facebook</button>
-                    </div>
-
                 </div>
 
 

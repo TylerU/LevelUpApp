@@ -24,4 +24,11 @@ body{
 
 .header{
     text-align: center;
+    position: relative;
+}
+
+.header .login-button{
+    position:absolute;
+    top:0px;
+    right:0px;
 }

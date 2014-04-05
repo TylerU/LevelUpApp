@@ -11,9 +11,9 @@ App.config(['$routeProvider',
         templateUrl: 'routes/login.html',
         controller: 'LoginCtrl'
       }).
-      when('/todo', {
+      when('/main', {
         templateUrl: 'routes/main.html',
-        controller: 'TodoCtrl'
+        controller: 'LevelUpAppCtrl'
       }).
       otherwise({
         redirectTo: '/home'
@@ -24,13 +24,16 @@ App.run( function($rootScope, $location, ParseService) {
      // register listener to watch route changes
      $rootScope.$on( "$routeChangeStart", function(event, next, current) {
        if ( !ParseService.userLoggedIn() ) {
-         // no logged user, we should be going to #login
-         if ( next.templateUrl == "routes/login.html" ) {
-           // already going to #login, no redirect needed
-         } else {
-           // not going to #login, we should redirect now
-           $location.path( "/login" );
+         if ( next.templateUrl == "routes/main.html" ) {
+             $location.path( "/login" );
          }
+       }
+       else{
+           if ( next.templateUrl == "routes/main.html" ) {
+           } else {
+               $location.path( "/main" );
+           }
+
        }
      });
   });

@@ -33,6 +33,7 @@
     <div id="application" class="container" ng-controller="LevelUpAppCtrl" ng-init="init()">
         <div class="header">
             <h1><img width="50px" height="50px" src="images/levelup.png" /> Level Up Challenge</h1>
+            <button class="login-button btn-primary btn btn-sm" ng-click="logChange()">{{loginOrLogout()}}</button>
         </div>
         <div ng-view></div>
     </div>

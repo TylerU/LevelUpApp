@@ -15,47 +15,53 @@ App.factory('ParseService', function(){
       name: "Parse",
 
       // Login a user
-      login : function login(username, password, callback) {
+      login : function login(email, password) {
         var dfd = new jQuery.Deferred();
-    	  Parse.User.logIn(username, password, {
+    	  Parse.User.logIn(email, password, {
     	    success: function(user) {
-            dfd.resolve();
+                dfd.resolve();
     	    },
     	    error: function(user, error) {
-            dfd.reject(error);
+                dfd.reject(error.message);
     	    }
         });
         return dfd.promise();
       },
 
-      // Login a user using Facebook
-      FB_login : function FB_login() {
-          var dfd = new jQuery.Deferred();
-
-          Parse.FacebookUtils.logIn(null, {
-               success: function(user) {
-                    dfd.resolve();
-               },
-               error: function(user, error) {
-                    dfd.reject(error);
-               }
-         });
-         return dfd.promise();
-      },
+//      // Login a user using Facebook
+//      FB_login : function FB_login() {
+//          var dfd = new jQuery.Deferred();
+//
+//          Parse.FacebookUtils.logIn(null, {
+//               success: function(user) {
+//                    dfd.resolve();
+//               },
+//               error: function(user, error) {
+//                    dfd.reject(error);
+//               }
+//         });
+//         return dfd.promise();
+//      },
 
       // Register a user
-      signUp : function signUp(username, password) {
-        var dfd = new jQuery.Deferred();
-      	Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
-            success: function(user) {
-                dfd.resolve();
-            },
+      signUp : function signUp(email, firstname, lastname, password) {
+            var dfd = new jQuery.Deferred();
+            var user = new Parse.User();
+            user.set("email", email);
+            user.set("username", email);
+            user.set("firstname", firstname);
+            user.set("lastname", lastname);
+            user.set("password", password);
 
-            error: function(user, error) {
-              dfd.reject(error);
-            }
-        });
-        return dfd.promise();
+            var promise = user.signUp(null, {
+              success: function(user) {
+                  dfd.resolve();
+              },
+              error: function(user, error) {
+                  dfd.reject(error.message);
+              }
+            });
+            return dfd.promise();
       },
 
       // Logout current user
