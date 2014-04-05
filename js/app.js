@@ -6,7 +6,7 @@ Todo:
 
 */
 
-var App = angular.module("levelup",['ngRoute']);
+var App = angular.module("levelup",['ngRoute', 'ui.keypress']);
 
 App.controller("LevelUpAppCtrl",function  ($scope, ParseService, $location) {
 	$scope.init = function  () {

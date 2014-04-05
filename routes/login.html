@@ -15,12 +15,14 @@
 
                 <div style="margin-bottom: 25px" class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="email" ng-model="loginEmail">
+                    <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="email"
+                           ng-model="loginEmail" ui-keyup="{'enter':'login()'}">
                 </div>
 
                 <div style="margin-bottom: 25px" class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="login-password" type="password" class="form-control" name="password" placeholder="password" ng-model="loginPassword">
+                    <input id="login-password" type="password" class="form-control" name="password" placeholder="password"
+                           ng-model="loginPassword" ui-keyup="{'enter':'login()'}">
                 </div>
 
 
@@ -38,7 +40,7 @@
                     <!-- Button -->
 
                     <div class="col-sm-12 controls">
-                        <a id="btn-login" ng-click="login()" class="btn btn-success">Login  </a>
+                        <button type="button" id="btn-login" ng-click="login()" class="btn btn-success">Login  </button>
                     </div>
                 </div>
 
@@ -79,26 +81,30 @@
                 <div class="form-group">
                     <label for="signEmail" class="col-md-3 control-label">Email</label>
                     <div class="col-md-9">
-                        <input id="signEmail" type="text" class="form-control" name="email" placeholder="Email Address" ng-model="signUpEmail">
+                        <input id="signEmail" type="text" class="form-control" name="email" placeholder="Email Address"
+                               ng-model="signUpEmail" ui-keyup="{'enter':'signUp()'}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="signFirstName" class="col-md-3 control-label">First Name</label>
                     <div class="col-md-9">
-                        <input id="signFirstName" type="text" class="form-control" name="firstname" placeholder="First Name" ng-model="signUpFirstName">
+                        <input id="signFirstName" type="text" class="form-control" name="firstname" placeholder="First Name"
+                               ng-model="signUpFirstName" ui-keyup="{'enter':'signUp()'}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="signLastName" class="col-md-3 control-label">Last Name</label>
                     <div class="col-md-9">
-                        <input id="signLastName" type="text" class="form-control" name="lastname" placeholder="Last Name" ng-model="signUpLastName">
+                        <input id="signLastName" type="text" class="form-control" name="lastname" placeholder="Last Name"
+                               ng-model="signUpLastName" ui-keyup="{'enter':'signUp()'}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="signPassword" class="col-md-3 control-label">Password</label>
                     <div class="col-md-9">
-                        <input id="signPassword" type="password" class="form-control" name="passwd" placeholder="Password" ng-model="signUpPassword">
+                        <input id="signPassword" type="password" class="form-control" name="passwd" placeholder="Password"
+                               ng-model="signUpPassword" ui-keyup="{'enter':'signUp()'}">
                     </div>
                 </div>
 

@@ -28,21 +28,6 @@ App.factory('ParseService', function(){
         return dfd.promise();
       },
 
-//      // Login a user using Facebook
-//      FB_login : function FB_login() {
-//          var dfd = new jQuery.Deferred();
-//
-//          Parse.FacebookUtils.logIn(null, {
-//               success: function(user) {
-//                    dfd.resolve();
-//               },
-//               error: function(user, error) {
-//                    dfd.reject(error);
-//               }
-//         });
-//         return dfd.promise();
-//      },
-
       // Register a user
       signUp : function signUp(email, firstname, lastname, password) {
             var dfd = new jQuery.Deferred();

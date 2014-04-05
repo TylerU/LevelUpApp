@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label for="newSkillName">Skill: </label>
                 <input type="text" class="form-control input-sm" id="newSkillName" ng-model="newSkillName">
-                <button type="button" class="btn btn-primary btn-sm" ng-click="addSkill()">Create New Skill</button>
+                <button type="button" class="btn btn-primary btn-sm" ng-click="addSkill()">Add New Skill</button>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
             <label for="activityDifficulty">How difficult was it?</label>
             <select class="form-control" id="activityDifficulty" ng-model="inputDifficulty" ng-options="c for c in difficultyOptions"></select>
         </div>
-        <button type="button" class="btn btn-primary btn-xs" ng-click="addActivity()">Create New Skill</button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="addActivity()">Log Activity!</button>
     </div>
     <div class="newsfeed foreground-area">
         <h3>News Feed</h3>
